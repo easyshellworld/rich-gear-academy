@@ -32,7 +32,7 @@ extern fn init() {
 }
 
 #[no_mangle]
-extern  fn handle() {
+extern fn handle() {
     let game_session_action: GameSessionAction =
         msg::load().expect("Unable to decode GameSessionAction");
     let game_session = get_game_session_mut();
@@ -155,7 +155,7 @@ extern  fn handle() {
 }
 
 #[no_mangle]
-extern  fn handle_reply() {
+extern fn handle_reply() {
     let reply_to = msg::reply_to().expect("Failed to query reply_to data");
     let wordle_event: WordleEvent = msg::load().expect("Unable to decode WordleEvent");
     let game_session = get_game_session_mut();
@@ -169,7 +169,7 @@ extern  fn handle_reply() {
 }
 
 #[no_mangle]
-extern  fn state() {
+extern fn state() {
     let game_session = get_game_session();
     msg::reply::<GameSessionState>(game_session.into(), 0)
         .expect("failed to encode or reply from state()");

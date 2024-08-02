@@ -12,7 +12,7 @@ struct Wordle {
 }
 
 #[no_mangle]
-extern "C" fn init() {
+extern fn init() {
     unsafe {
         WORDLE = Some(Wordle {
             games: HashMap::new(),
@@ -21,7 +21,7 @@ extern "C" fn init() {
 }
 
 #[no_mangle]
-extern "C" fn handle() {
+extern fn handle() {
     let action: Action = msg::load().expect("Unable to decode ");
     let wordle = unsafe { WORDLE.as_mut().expect("The program is not initialized") };
 
