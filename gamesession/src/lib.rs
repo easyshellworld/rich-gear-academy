@@ -24,8 +24,7 @@ fn get_game_session() -> &'static GameSession {
 #[no_mangle]
 extern "C" fn init() {
     // Receives and stores the Wordle program's address (handled at game_session_io)
-    let game_session_init: GameSessionInit =
-        msg::load().expect("Unable to decode GameSessionInit");
+    let game_session_init: GameSessionInit =msg::load().expect("Unable to decode GameSessionInit");
     game_session_init.assert_valid();
     unsafe {
         GAME_SESSION_STATE = Some(game_session_init.into());
